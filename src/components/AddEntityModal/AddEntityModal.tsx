@@ -6,7 +6,6 @@ import Typography from "@mui/material/Typography";
 import AddIcon from "@mui/icons-material/Add";
 import React, { useState } from "react";
 import Stack from "@mui/material/Stack";
-import { UserData } from "../../models/userModels";
 
 const style = {
   position: "absolute" as "absolute",

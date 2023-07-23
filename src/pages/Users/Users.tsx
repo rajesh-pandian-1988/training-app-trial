@@ -3,11 +3,7 @@ import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import Grid from "@mui/material/Grid";
 import { EntityTable } from "../../components/EntityTable/EntityTable";
-import {
-  GridColDef,
-  GridRowModesModel,
-  GridValueGetterParams,
-} from "@mui/x-data-grid";
+import { GridColDef, GridValueGetterParams } from "@mui/x-data-grid";
 import { AddEntityButton } from "../../components/AddEntityButton/AddEntityButton";
 import { AddEntityModal } from "../../components/AddEntityModal/AddEntityModal";
 import {
@@ -19,8 +15,8 @@ import { UserData } from "../../models/userModels";
 export const Users = () => {
   const [showAddEntityModal, setShowAddEntityModal] = useState(false);
 
-  const { data, error, isLoading } = useGetUsersQuery("");
-  const [addUsers, { isLoading: isUpdating }] = useAddUsersMutation();
+  const { data, isLoading } = useGetUsersQuery("");
+  const [addUsers] = useAddUsersMutation();
 
   const addUserData = (userData: UserData) => {
     const userId = getUsers(data).length + 1;

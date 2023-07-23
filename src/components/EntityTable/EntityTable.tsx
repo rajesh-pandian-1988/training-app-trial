@@ -1,11 +1,6 @@
 import Box from "@mui/material/Box";
 import React from "react";
-import {
-  DataGrid,
-  GridColDef,
-  GridRowsProp,
-  GridValueGetterParams,
-} from "@mui/x-data-grid";
+import { DataGrid, GridColDef, GridRowsProp } from "@mui/x-data-grid";
 
 interface EntityTableProps {
   rows: GridRowsProp[];
