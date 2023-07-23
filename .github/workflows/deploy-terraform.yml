@@ -38,7 +38,7 @@ jobs:
         with:
           node-version: 18
       - run: npm install
-      - run: npm run build --if-present
+      - run: npm run build
       - uses: azure/login@v1
         with:
           creds: ${{ secrets.AZURE_CREDENTIALS }}
