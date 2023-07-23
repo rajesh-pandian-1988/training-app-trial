@@ -6,6 +6,7 @@ import Typography from "@mui/material/Typography";
 import AddIcon from "@mui/icons-material/Add";
 import React, { useState } from "react";
 import Stack from "@mui/material/Stack";
+import { UserData } from "../../models/userModels";
 
 const style = {
   position: "absolute" as "absolute",
@@ -21,16 +22,25 @@ const style = {
 interface AddEntityModalProps {
   showAddEntityModal: boolean;
   setShowAddEntityModal: Function;
-  modalHeading: string;
-  addUsers: Function;
+  entityName: string;
+  entityModel: any;
+  addEntity: Function;
 }
 
 export const AddEntityModal = (props: AddEntityModalProps) => {
-  const { showAddEntityModal, setShowAddEntityModal, modalHeading, addUsers } =
-    props;
-  const [firstName, setFirstName] = useState("");
-  const [lastName, setLastName] = useState("");
-  const [age, setAge] = useState("");
+  const {
+    showAddEntityModal,
+    setShowAddEntityModal,
+    entityName,
+    addEntity,
+    entityModel,
+  } = props;
+
+  const [entity, setEntity] = useState(entityModel);
+
+  const updateEntity = (key: any, value: any) => {
+    setEntity((prev: any) => ({ ...prev, [key]: value }));
+  };
 
   return (
     <>
@@ -42,46 +52,29 @@ export const AddEntityModal = (props: AddEntityModalProps) => {
       >
         <Box sx={style}>
           <Typography id="modal-modal-title" variant="h6" component="h2">
-            {modalHeading}
+            {"Add " + entityName}
           </Typography>
           <Stack>
-            <TextField
-              sx={{ marginTop: "10px" }}
-              id="outlined-basic"
-              label="First Name"
-              variant="outlined"
-              value={firstName}
-              onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
-                setFirstName(event.target.value);
-              }}
-            />
-            <TextField
-              sx={{ marginTop: "10px" }}
-              id="outlined-basic"
-              label="Last Name"
-              variant="outlined"
-              value={lastName}
-              onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
-                setLastName(event.target.value);
-              }}
-            />
-            <TextField
-              sx={{ marginTop: "10px" }}
-              id="outlined-basic"
-              label="Age"
-              variant="outlined"
-              value={age}
-              onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
-                setAge(event.target.value);
-              }}
-            />
+            {Object.keys(entity).map((key, index) => (
+              <TextField
+                key={index}
+                sx={{ marginTop: "10px" }}
+                id="outlined-basic"
+                label={key.toUpperCase()}
+                variant="outlined"
+                value={entity[key]}
+                onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
+                  updateEntity(key, event.target.value);
+                }}
+              />
+            ))}
             <Button
               sx={{ marginTop: "10px" }}
               variant="contained"
               endIcon={<AddIcon />}
-              onClick={() => addUsers(firstName, lastName, age)}
+              onClick={() => addEntity(entity)}
             >
-              {"Save User"}
+              {"Save " + entityName}
             </Button>
           </Stack>
         </Box>

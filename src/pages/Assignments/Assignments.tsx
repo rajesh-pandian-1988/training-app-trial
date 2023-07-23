@@ -64,12 +64,6 @@ export const Assignments = () => {
             handleAddEntity={setShowAddEntityModal}
           />
           <EntityTable rows={userRow} cols={cols} />
-          <AddEntityModal
-            showAddEntityModal={showAddEntityModal}
-            setShowAddEntityModal={setShowAddEntityModal}
-            modalHeading={"Add Users"}
-            addUsers={addUsers}
-          />
         </Grid>
       </Grid>
     </Box>
